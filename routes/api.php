@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\InvoiceController;
+use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\TokenController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('auth/token', [TokenController::class, 'store'])->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::group(['middleware'=>'sanctum'],function(){
+    Route::get('auth/user', [TokenController::class, 'user']);
+    Route::get('user/invoices', [InvoiceController::class, 'index']);
+    Route::delete('auth/token/delete', [TokenController::class, 'destroy']);
 });

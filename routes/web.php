@@ -17,4 +17,4 @@ Route::get('/', function () {
     return ['Myxara API' => env('API_VERSION')];
 });
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';

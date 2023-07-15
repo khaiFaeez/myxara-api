@@ -1,26 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Auth\Events\Registered;
 use App\Models\Client;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
+class RegisterController extends Controller
 {
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(StoreUserRequest $request): Response
+    public function store(StoreUserRequest $request)
     {
         $request->validateClient();
 
@@ -30,11 +22,9 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
         event(new Registered($user));
-
-        Auth::login($user);
-
-        return response()->noContent();
+        return [
+            'token' => $user->createToken($request->deviceId)->plainTextToken,
+        ];
     }
 }
