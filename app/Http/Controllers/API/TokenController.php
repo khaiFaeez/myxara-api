@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthenticationException;
 
@@ -21,13 +22,16 @@ class TokenController extends Controller
         }
 
         return [
-            'token' => $request->user()->createToken($request->deviceId)->plainTextToken
+            'token_type' => 'Bearer',
+            'access_token' => $request->user()->createToken($request->deviceId)->plainTextToken
         ];
     }
 
     public function user(Request $request)
     {
-        return $request->user();
+        // return (new UserResource($request->user()))
+        // ->response();
+        return $request->user()->with(['client'])->first();
     }
 
     public function destroy(Request $request)

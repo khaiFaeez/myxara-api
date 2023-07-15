@@ -20,8 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('auth/token', [TokenController::class, 'store'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::group(['middleware'=>'sanctum'],function(){
+Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::get('auth/user', [TokenController::class, 'user']);
     Route::get('user/invoices', [InvoiceController::class, 'index']);
+    Route::get('user/invoices/{invoiceNo}', [InvoiceController::class, 'show']);
     Route::delete('auth/token/delete', [TokenController::class, 'destroy']);
 });
