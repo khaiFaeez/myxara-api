@@ -3,4 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/myxara/public_html/invoice
     - /bin/cp -r * $DEPLOYPATH #copy all from root
-    #    - /bin/cp -r ./public/* $DEPLOYPATH/public_html/api
+    #    - /bin/cp -r ./public/* $DEPLOYPATH/public_html/myxara-api
