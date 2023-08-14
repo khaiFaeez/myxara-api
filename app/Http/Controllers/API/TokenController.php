@@ -17,7 +17,9 @@ class TokenController extends Controller
             'deviceId' => 'required'
         ]);
 
-        if (!auth()->attempt($request->only('userId', 'password'))) {
+        $request['user_id'] = $request->userId;
+
+        if (!auth()->attempt($request->only('user_id', 'password'))) {
             return new AuthenticationException();
         }
 
@@ -31,7 +33,7 @@ class TokenController extends Controller
     {
         // return (new UserResource($request->user()))
         // ->response();
-        return $request->user()->with(['client'])->first();
+        return response($request->user()->with(['client'])->first(), 200);
     }
 
     public function destroy(Request $request)
