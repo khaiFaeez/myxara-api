@@ -39,8 +39,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         Route::model('invoiceNo', Invoice::class, function ($value) {
-            return Invoice::where('Inv_No', $value)->with(['account','delivery'])->firstOrFail();
+            return Invoice::where('Inv_No', $value)->with(['account', 'delivery', 'receipt'])->firstOrFail();
         });
-
     }
 }

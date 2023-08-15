@@ -14,30 +14,34 @@ class Invoice extends Model
 
     protected $table = 'Invoice';
 
-    public function account():HasMany
+    public function account(): HasMany
     {
-        return $this->hasMany(Account::class,'Inv_No','Id');
+        return $this->hasMany(Account::class, 'Inv_No', 'Id');
     }
 
-    public function delivery():HasMany
+    public function delivery(): HasMany
     {
-        return $this->hasMany(Delivery::class,'Inv_No','Id');
+        return $this->hasMany(Delivery::class, 'Inv_No', 'Id');
+    }
+
+    public function receipt(): HasMany
+    {
+        return $this->hasMany(AccountReceipt::class, 'Inv_No', 'Id');
     }
 
     public static function boot()
     {
         parent::boot();
 
-        if (auth()->user()) {
-            $user = User::with('client')->find(auth()->user()->id);
-            // if (!auth()->user()->isAdmin) {
-                self::addGlobalScope(function (Builder $builder) use ($user){
-                    if ($user->client->id) {
-                        $builder->where('MyKad_SSM', $user->client->id);
-                    }
-                });
-            // }
-        }
+        // if (auth()->user()) {
+        //     $user = User::with('client')->find(auth()->user()->id);
+        //     // if (!auth()->user()->isAdmin) {
+        //     self::addGlobalScope(function (Builder $builder) use ($user) {
+        //         if ($user->client->id) {
+        //             $builder->where('MyKad_SSM', $user->client->id);
+        //         }
+        //     });
+        //     // }
+        // }
     }
-
 }

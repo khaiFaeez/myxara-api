@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DeliveryResource extends JsonResource
+class AccountReceiptResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,9 @@ class DeliveryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'trackingNo' => $this->Tracking_No,
-            'poslajuTrackingUrl' => $this->Poslaju_Track,
+            'receiptDate' => $this->receipt_date,
+            'image' => $this->Uploads,
+            'paid' => $this->Payment_Paid,
             'remarks' => $this->Remarks,
         ];
     }

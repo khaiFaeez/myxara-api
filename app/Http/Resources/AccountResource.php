@@ -15,11 +15,11 @@ class AccountResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'ReceiptDate' => $this->Receipt_Date,
-            'ReceiptAmount' => $this->Receipt_Amount,
-            'Payment' => paymentMode($this->Payment_Mode),
-            'Bank' => PaymentBankName($this->Payment_Bank),
-            'Notes' => $this->Notes
+            'receiptDate' => $this->Receipt_Date,
+            'receiptAmount' => $this->Receipt_Amount,
+            'payment' => paymentMode($this->Payment_Mode),
+            'bank' => PaymentBankName($this->Payment_Bank),
+            'notes' => $this->Notes
         ];
     }
 }
