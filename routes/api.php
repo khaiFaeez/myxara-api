@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('auth/token', [TokenController::class, 'store'])->middleware('guest');
+Route::post('auth/checkId', [TokenController::class, 'checkId'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {

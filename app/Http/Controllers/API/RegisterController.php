@@ -17,8 +17,8 @@ class RegisterController extends Controller
         $request->validateClient();
 
         $user = User::create([
-            'user_id' => $request->userId,
-            'name'=>$request->name,
+            'user_id' => $request->ic,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

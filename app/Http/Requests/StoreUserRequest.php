@@ -29,21 +29,21 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'userId' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'ic' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', Rules\Password::defaults()],
-            'deviceId'=>['required'],
-            'name'=>['nullable']
+            'deviceId' => ['required'],
+            'name' => ['nullable']
         ];
     }
 
     public function validateClient()
     {
-        $userId = $this->userId;
+        $userId = $this->ic;
 
         $clientExists = Client::where('MyKad_SSM', $userId)->first();
 
-        if(!$clientExists){
+        if (!$clientExists) {
             throw new HttpResponseException(response()->json([
 
                 'success'   => false,
@@ -52,11 +52,11 @@ class StoreUserRequest extends FormRequest
 
             ]));
         }
-        $this->merge(['name'=>$clientExists->Name]);
+        $this->merge(['name' => $clientExists->Name]);
     }
 
 
-    public function failedValidation(Validator $validator):JsonResponse
+    public function failedValidation(Validator $validator): JsonResponse
     {
 
         throw new HttpResponseException(response()->json([
@@ -66,6 +66,5 @@ class StoreUserRequest extends FormRequest
             'data'      => $validator->errors()
 
         ]));
-
     }
 }
