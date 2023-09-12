@@ -11,6 +11,15 @@ use Illuminate\Auth\AuthenticationException;
 
 class TokenController extends Controller
 {
+    /**
+     * @LRDparam ic string|required
+     * // either space or pipe
+     * @LRDparam password string|password|required
+     * // override the default response codes
+     * @LRDparam deviceId string|required
+     * // override the default response codes
+     * @LRDparam responses 200,422
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -31,6 +40,11 @@ class TokenController extends Controller
         ];
     }
 
+    /**
+     * @LRDparam ic string|required
+     * // either space or pipe
+     * @LRDparam responses 200,422
+     */
     public function checkId(Request $request)
     {
         $request->validate([

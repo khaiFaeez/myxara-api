@@ -1,8 +1,8 @@
-# Laravel Request Docs
+# Myxara API
 
 > Version 1.0.0
 
-Laravel Request Docs
+Myxara API
 
 ## Path Table
 

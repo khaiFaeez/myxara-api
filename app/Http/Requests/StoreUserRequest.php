@@ -31,9 +31,9 @@ class StoreUserRequest extends FormRequest
         return [
             'ic' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', Rules\Password::defaults()],
-            'deviceId' => ['required'],
-            'name' => ['nullable']
+            'password' => ['required', Rules\Password::defaults(), 'string'],
+            'deviceId' => ['required', 'string'],
+            'name' => ['nullable', 'string']
         ];
     }
 
