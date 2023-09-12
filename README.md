@@ -1,203 +1,865 @@
-## INSTALLATION
+# Laravel Request Docs
 
+> Version 1.0.0
+
+Laravel Request Docs
+
+## Path Table
+
+| Method | Path                                                            | Description |
+| ------ | --------------------------------------------------------------- | ----------- |
+| POST   | [/api/auth/token](#postapiauthtoken)                            |             |
+| POST   | [/api/auth/checkId](#postapiauthcheckid)                        |             |
+| POST   | [/api/register](#postapiregister)                               |             |
+| GET    | [/api/auth/user](#getapiauthuser)                               |             |
+| HEAD   | [/api/auth/user](#headapiauthuser)                              |             |
+| GET    | [/api/user/invoices](#getapiuserinvoices)                       |             |
+| HEAD   | [/api/user/invoices](#headapiuserinvoices)                      |             |
+| GET    | [/api/user/invoices/{invoiceNo}](#getapiuserinvoicesinvoiceno)  |             |
+| HEAD   | [/api/user/invoices/{invoiceNo}](#headapiuserinvoicesinvoiceno) |             |
+| DELETE | [/api/auth/token/delete](#deleteapiauthtokendelete)             |             |
+
+## Reference Table
+
+| Name | Path | Description |
+| ---- | ---- | ----------- |
+
+## Path Details
+
+---
+
+### [POST]/api/auth/token
+
+#### RequestBody
+
+-   application/json
+
+```ts
+{
+}
 ```
 
-cp .env.example .env
+#### Responses
+
+-   200 Successful operation
+
+`application/json`
+
+```ts
+{
+}
 ```
-Setup DB config in ENV
 
+-   400 Bad Request
+
+`application/json`
+
+```ts
+{
+}
 ```
-composer install
 
-php artisan migrate
+-   401 Unauthorized
 
-php artisan serve
+`application/json`
+
+```ts
+{
+}
 ```
 
-Open POSTMAN start use following
+-   403 Forbidden
 
-# MYXARA
+`application/json`
 
-This is the OpenAPI specification for the MYXARA API.
+```ts
+{
+}
+```
 
-## License
+-   404 Not Found
 
-This project is licensed under the [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html) license.
+`application/json`
 
-## Base URL
+```ts
+{
+}
+```
 
-The base URL for all API endpoints is `http://localhost:8000`.
+-   422 Unprocessable Entity
 
-## Endpoints
+`application/json`
 
-### /api/auth/token
+```ts
+{
+}
+```
 
-#### POST /api/auth/token
+-   500 Internal Server Error
 
-Creates a new authentication token.
+`application/json`
 
-##### Responses
+```ts
+{
+}
+```
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+-   default Unexpected error
 
-### /api/register
+`application/json`
 
-#### POST /api/register
+```ts
+{
+}
+```
 
-Registers a new user.
+---
 
-##### Responses
+### [POST]/api/auth/checkId
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+#### RequestBody
 
-##### Request Body
+-   application/json
 
-Request body parameters:
+```ts
+{
+}
+```
 
-- userId (string, required)
-- email (string, required)
-- password (object, required)
-- deviceId (object, required)
-- name (object, optional)
+#### Responses
 
-### /api/auth/user
+-   200 Successful operation
 
-#### GET /api/auth/user
+`application/json`
 
-Gets the authenticated user.
+```ts
+{
+}
+```
 
-##### Responses
+-   400 Bad Request
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+`application/json`
 
-#### HEAD /api/auth/user
+```ts
+{
+}
+```
 
-Checks if the user is authenticated.
+-   401 Unauthorized
 
-##### Responses
+`application/json`
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+```ts
+{
+}
+```
 
-### /api/user/invoices
+-   403 Forbidden
 
-#### GET /api/user/invoices
+`application/json`
 
-Gets the user's invoices.
+```ts
+{
+}
+```
 
-##### Responses
+-   404 Not Found
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+`application/json`
 
-#### HEAD /api/user/invoices
+```ts
+{
+}
+```
 
-Checks if the user has any invoices.
+-   422 Unprocessable Entity
 
-##### Responses
+`application/json`
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+```ts
+{
+}
+```
 
-### /api/user/invoices/{invoiceNo}
+-   500 Internal Server Error
 
-#### GET /api/user/invoices/{invoiceNo}
+`application/json`
 
-Gets the details of a specific invoice.
+```ts
+{
+}
+```
 
-##### Parameters
+-   default Unexpected error
 
-- invoiceNo (string, required) - The invoice number.
+`application/json`
 
-##### Responses
+```ts
+{
+}
+```
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+---
 
-#### HEAD /api/user/invoices/{invoiceNo}
+### [POST]/api/register
 
-Checks if a specific invoice exists.
+#### RequestBody
 
-##### Parameters
+-   application/json
 
-- invoiceNo (string, required) - The invoice number.
+```ts
+{
+  ic?: string
+  email?: string
+  password: {
+  }
+  deviceId: {
+  }
+  name: {
+  }
+}
+```
 
-##### Responses
+#### Responses
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+-   200 Successful operation
 
-### /api/auth/token/delete
+`application/json`
 
-#### DELETE /api/auth/token/delete
+```ts
+{
+}
+```
 
-Deletes the current authentication token.
+-   400 Bad Request
 
-##### Responses
+`application/json`
 
-- 200: Successful operation
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 422: Unprocessable Entity
-- 500: Internal Server Error
-- Default: Unexpected error
+```ts
+{
+}
+```
 
-##### Request Body
+-   401 Unauthorized
 
-Request body parameters:
+`application/json`
 
-- None
+```ts
+{
+}
+```
 
+-   403 Forbidden
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   404 Not Found
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   422 Unprocessable Entity
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   500 Internal Server Error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   default Unexpected error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+---
+
+### [GET]/api/auth/user
+
+#### Responses
+
+-   200 Successful operation
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   400 Bad Request
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   401 Unauthorized
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   403 Forbidden
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   404 Not Found
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   422 Unprocessable Entity
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   500 Internal Server Error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   default Unexpected error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+---
+
+### [HEAD]/api/auth/user
+
+#### Responses
+
+-   200 Successful operation
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   400 Bad Request
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   401 Unauthorized
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   403 Forbidden
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   404 Not Found
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   422 Unprocessable Entity
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   500 Internal Server Error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   default Unexpected error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+---
+
+### [GET]/api/user/invoices
+
+#### Responses
+
+-   200 Successful operation
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   400 Bad Request
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   401 Unauthorized
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   403 Forbidden
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   404 Not Found
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   422 Unprocessable Entity
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   500 Internal Server Error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   default Unexpected error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+---
+
+### [HEAD]/api/user/invoices
+
+#### Responses
+
+-   200 Successful operation
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   400 Bad Request
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   401 Unauthorized
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   403 Forbidden
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   404 Not Found
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   422 Unprocessable Entity
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   500 Internal Server Error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   default Unexpected error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+---
+
+### [GET]/api/user/invoices/{invoiceNo}
+
+#### Parameters(Query)
+
+```ts
+invoiceNo: string;
+```
+
+#### Responses
+
+-   200 Successful operation
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   400 Bad Request
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   401 Unauthorized
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   403 Forbidden
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   404 Not Found
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   422 Unprocessable Entity
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   500 Internal Server Error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   default Unexpected error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+---
+
+### [HEAD]/api/user/invoices/{invoiceNo}
+
+#### Parameters(Query)
+
+```ts
+invoiceNo: string;
+```
+
+#### Responses
+
+-   200 Successful operation
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   400 Bad Request
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   401 Unauthorized
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   403 Forbidden
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   404 Not Found
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   422 Unprocessable Entity
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   500 Internal Server Error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   default Unexpected error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+---
+
+### [DELETE]/api/auth/token/delete
+
+#### RequestBody
+
+-   application/json
+
+```ts
+{
+}
+```
+
+#### Responses
+
+-   200 Successful operation
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   400 Bad Request
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   401 Unauthorized
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   403 Forbidden
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   404 Not Found
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   422 Unprocessable Entity
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   500 Internal Server Error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+-   default Unexpected error
+
+`application/json`
+
+```ts
+{
+}
+```
+
+## References
