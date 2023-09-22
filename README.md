@@ -214,8 +214,6 @@ Myxara API
   email?: string
   password: {
   }
-  deviceId: {
-  }
   name: {
   }
 }

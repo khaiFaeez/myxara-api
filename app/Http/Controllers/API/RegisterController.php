@@ -25,7 +25,7 @@ class RegisterController extends Controller
         event(new Registered($user));
         return [
             'token_type' => 'Bearer',
-            'access_token' => $user->createToken($request->deviceId)->plainTextToken,
+            'access_token' => $user->createToken($request->name)->plainTextToken,
         ];
     }
 }

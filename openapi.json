@@ -321,11 +321,6 @@
                                         "nullable": false,
                                         "format": "object"
                                     },
-                                    "deviceId": {
-                                        "type": "object",
-                                        "nullable": false,
-                                        "format": "object"
-                                    },
                                     "name": {
                                         "type": "object",
                                         "nullable": true,

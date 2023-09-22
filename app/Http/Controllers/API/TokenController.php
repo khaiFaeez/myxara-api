@@ -16,8 +16,6 @@ class TokenController extends Controller
      * // either space or pipe
      * @LRDparam password string|password|required
      * // override the default response codes
-     * @LRDparam deviceId string|required
-     * // override the default response codes
      * @LRDparam responses 200,422
      */
     public function store(Request $request)
@@ -25,7 +23,6 @@ class TokenController extends Controller
         $request->validate([
             'ic' => 'required',
             'password' => 'required',
-            'deviceId' => 'required'
         ]);
 
         $request['user_id'] = $request->ic;
@@ -36,7 +33,7 @@ class TokenController extends Controller
 
         return [
             'token_type' => 'Bearer',
-            'access_token' => $request->user()->createToken($request->deviceId)->plainTextToken
+            'access_token' => $request->user()->createToken($request->name)->plainTextToken
         ];
     }
 
@@ -73,7 +70,7 @@ class TokenController extends Controller
 
     public function destroy(Request $request)
     {
-        $request->user()->tokens()->where('name', $request->deviceId)->delete();
+        $request->user()->tokens()->where('name', $request->name)->delete();
         return response('', 204);
     }
 }
