@@ -33,15 +33,15 @@ class Invoice extends Model
     {
         parent::boot();
 
-        // if (auth()->user()) {
-        //     $user = User::with('client')->find(auth()->user()->id);
-        //     // if (!auth()->user()->isAdmin) {
-        //     self::addGlobalScope(function (Builder $builder) use ($user) {
-        //         if ($user->client->id) {
-        //             $builder->where('MyKad_SSM', $user->client->id);
-        //         }
-        //     });
-        //     // }
-        // }
+        if (auth()->user()) {
+            $user = User::with('client')->find(auth()->user()->id);
+            if (!auth()->user()->isAdmin) {
+            self::addGlobalScope(function (Builder $builder) use ($user) {
+                if ($user->client->id) {
+                    $builder->where('MyKad_SSM', $user->client->id);
+                }
+            });
+            }
+        }
     }
 }
