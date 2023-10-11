@@ -33,7 +33,7 @@ class TokenController extends Controller
 
         return [
             'token_type' => 'Bearer',
-            'access_token' => $request->user()->createToken($request->name)->plainTextToken
+            'access_token' => $request->user()->createToken($request->user_id)->plainTextToken
         ];
     }
 
@@ -70,7 +70,7 @@ class TokenController extends Controller
 
     public function destroy(Request $request)
     {
-        $request->user()->tokens()->where('name', $request->name)->delete();
+        $request->user()->tokens()->where('ic', $request->user_id)->delete();
         return response('', 204);
     }
 }
