@@ -26,7 +26,9 @@ class InvoiceResource extends JsonResource
             'receipt' => AccountReceiptResource::collection($this->whenLoaded('receipt')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'amount'=> $this->Overdue_Amt,
+            'overdue'=> $this->Overdue_Amt,
+            'paid'=> $this->Paid_Total,
+            'grand_total' => $this->Grand_Total,
         ];
     }
 }
